@@ -1,3 +1,4 @@
+import 'package:ecommerce/screens/homepage.dart';
 import 'package:ecommerce/screens/signup.dart';
 import 'package:ecommerce/widgets/changesreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,7 +24,7 @@ String email = "";
 String password = "";
 
 
-Future<void> validation() async {
+Future<void> validation(BuildContext context) async {
   final FormState? state = _formKey.currentState;
   if (!state!.validate()) {
     try {
@@ -32,7 +33,11 @@ Future<void> validation() async {
       _scaffoldKey.currentState!.showSnackBar(SnackBar(
         backgroundColor: Colors.blueGrey,
         content: Text("Signed in Successfully: \nUser:"+result.user.email,style: TextStyle(color: Colors.green),),
-      ));    } on PlatformException catch (e) {
+      ));
+
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (ctx)=>HomePage()));
+
+    } on PlatformException catch (e) {
       _scaffoldKey.currentState!.showSnackBar(SnackBar(
         content: Text(e.message.toString()),
       ));
@@ -137,7 +142,7 @@ class _LoginState extends State<Login> {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {
-                              validation();
+                              validation(context);
                             },
                             child: Text("Sign In"),
                           ))
