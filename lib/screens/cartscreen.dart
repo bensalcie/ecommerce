@@ -1,3 +1,4 @@
+import 'package:ecommerce/screens/checkout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -150,12 +151,15 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Container(
-        height: 55,
+        height: 65,
         width: double.infinity,
         child: RaisedButton(
           color: Colors.blue[300],
           textColor: Colors.white,
-          onPressed: (){},
+          onPressed: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>Checkout(name: widget.name,price: widget.price,image: widget.image,)));
+
+          },
           child: Container(child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

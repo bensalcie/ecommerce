@@ -1,9 +1,14 @@
+import 'package:ecommerce/screens/cartscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'detailsscreen.dart';
 class Checkout extends StatefulWidget {
-  const Checkout({Key? key}) : super(key: key);
+  final String? name;
+  final double? price;
+  final String? image;
+  Checkout({this.name,this.price,this.image});
+  // const Checkout({Key? key}) : super(key: key);
 
   @override
   _CheckoutState createState() => _CheckoutState();
@@ -31,7 +36,7 @@ class _CheckoutState extends State<Checkout> {
                       decoration: BoxDecoration(
                           image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: AssetImage("images/mozzarella.jpg"))),
+                              image: AssetImage(widget.image!))),
                     ),
                   ),
                   Expanded(
@@ -44,13 +49,13 @@ class _CheckoutState extends State<Checkout> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Mozarella",
+                              widget.name!,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
                             Text("Food"),
                             Text(
-                              "Ksh. 400",
+                              "Ksh. ${widget.price}",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Color(0xff9b96d6)),
@@ -115,7 +120,9 @@ class _CheckoutState extends State<Checkout> {
                                 splashColor: Colors.blueGrey,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20)),
-                                onPressed: () {},
+                                onPressed: () {
+                                  
+                                },
                                 child: Text(
                                   "Checkout",
                                   style: TextStyle(
@@ -139,10 +146,40 @@ class _CheckoutState extends State<Checkout> {
       ),
     );
   }
+  Widget _buildBottomDetail({String? startName,String? endName}){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(startName!,style: DetailsScreen.myTextStyle,),
+        Text(endName!,style: DetailsScreen.myTextStyle,)
+
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Container(
+        margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
+        height: 65,
+        width: double.infinity,
+        child: RaisedButton(
+          color: Colors.blue[300],
+          textColor: Colors.white,
+          onPressed: (){},
+          child: Container(child: Center(
+            child: Row(
+              children: [
+                Text("Checkout",style: DetailsScreen.myTextStyle,textAlign: TextAlign.center,),
+                Icon(Icons.arrow_forward_rounded)
+              ],
+            ),
+          )),
+        ),
+
+      ),
+
       appBar: AppBar(
         title: Text("Checkout"),
         centerTitle: true,
@@ -153,17 +190,39 @@ class _CheckoutState extends State<Checkout> {
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-        child: Column(
+        child: ListView(
           children: [
             Container(
+              margin: EdgeInsets.fromLTRB(0, 100, 0, 0),
               width: double.infinity,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Checkout",style: TextStyle(fontSize: 28),),
-                  _buildSingleProduct()
+                  _buildSingleProduct(),
+                  _buildSingleProduct(),
+                  _buildSingleProduct(),
+                  _buildSingleProduct(),
+                  _buildSingleProduct(),
+                  _buildSingleProduct(),
+
+                  Container(
+                    height: 150,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        _buildBottomDetail(startName: "Your Price",endName: "Ksh. 600"),
+                        _buildBottomDetail(startName: "Discount",endName: "3%"),
+                        _buildBottomDetail(startName: "Shipping",endName: "Ksh. 60"),
+                        _buildBottomDetail(startName: "Total",endName: "Ksh. 1200"),
+                      ],
+                    ),
+                  ),
+
+
                 ],
+
               ),
             )
           ],

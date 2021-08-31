@@ -47,25 +47,41 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffF7F7F7),
+
       key: _scaffoldKey,
       resizeToAvoidBottomInset: false,
       body: Form(
         key: _formKey,
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 10),
+          margin: EdgeInsets.symmetric(horizontal: 30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Container(
+                height: 230,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.contain,
+                        image: AssetImage("images/shopping.png")
+                    )
+                ),
+              ),
               Container(
                 height: 350,
                 width: double.infinity,
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(
-                        "Login",
-                        style: TextStyle(
-                            fontSize: 50.0, fontWeight: FontWeight.bold),
+                      Container(
+
+                        child: Text(
+                          "Welcome back",
+                          style: TextStyle(
+                              fontSize: 28.0, fontWeight: FontWeight.bold,color: Colors.blue[400]),
+                        ),
+                        alignment: Alignment.bottomLeft,
                       ),
                       TextFormField(
                         onChanged: (value){

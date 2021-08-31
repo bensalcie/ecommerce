@@ -47,6 +47,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
+      backgroundColor: Color(0xffF7F7F7),
       resizeToAvoidBottomInset: false,
       body: Form(
         key: _Formkey,
@@ -63,6 +64,17 @@ class _SignUpState extends State<SignUp> {
                       SizedBox(
                         height: 50.0,
                       ),
+                      Container(
+                        height: 230,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.contain,
+                                image: AssetImage("images/shopping.png")
+                            )
+                        ),
+                      ),
+
                       Text(
                         "Register",
                         style: TextStyle(

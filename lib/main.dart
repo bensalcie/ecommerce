@@ -1,5 +1,6 @@
 import 'package:ecommerce/screens/checkout.dart';
 import 'package:ecommerce/screens/homepage.dart';
+import 'package:ecommerce/screens/welcomescreen.dart';
 import 'package:flutter/material.dart';
 
 void main(){
@@ -10,7 +11,7 @@ void main(){
               scaffoldBackgroundColor: Colors.white,
           visualDensity: VisualDensity.adaptivePlatformDensity
         ),
-        home: Checkout()
+        home: WelcomeScreen()
     )
   );
 }
